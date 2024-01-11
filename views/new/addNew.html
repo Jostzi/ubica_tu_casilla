@@ -1,0 +1,147 @@
+<!-- Form for adding a new place -->
+<form id="NewPlaceForm" name="NewPlaceForm">
+    <div class="form-group">
+        <label for="place_title">Casilla</label>
+        <input type="text" class="form-control" name="Casilla" id="Casilla" placeholder="" minlength="0" maxlength="60" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Tipo de Casilla:</label>
+        <select class="form-control" name="description" id="description">
+            <option value="normal">Normal</option>
+            <option value="especial">Especial</option>
+            <option value="urna_electronica">Urna Electrónica</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Tipo de casilla nominal:</label>
+        <select class="form-control" name="description" id="TipoCasilla">
+            <option value="Basica">Basica</option>
+            <option value="Contigua1">Contigua 1</option>
+            <option value="Contigua2">Contigua 2</option>
+            <option value="Extraordinaria1">Extraordinaria 1</option>
+            <option value="Extraordinaria2">Extraordinaria 2</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Tipo de casilla nominal 2:</label>
+        <select class="form-control" name="description" id="TipoCasilla2">
+            <option value="nulo"> </option>
+            <option value="Basica">Basica</option>
+            <option value="Contigua1">Contigua 1</option>
+            <option value="Contigua2">Contigua 2</option>
+            <option value="Extraordinaria1">Extraordinaria 1</option>
+            <option value="Extraordinaria2">Extraordinaria 2</option>
+        </select>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="place_description">Direccion</label>
+        <textarea class="form-control" name="address" id="address" rows="3" maxlength="1000"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="place_coordinates">Map coordinates*</label>
+        <div class="form-row">
+            <div class="col-6 col-lg-4">
+                <input type="number" class="form-control" name="lat" id="lat" placeholder="Latitude" min="0" max="256" required>
+            </div>
+            <div class="col-6 col-lg-4">
+                <input type="number" class="form-control" name="lng" id="lng" placeholder="Longtitude" min="0" max="256" required>
+            </div>
+            <div class="col-12 col-lg-4">
+                <a class="btn btn-primary btn-block" id="pickFromMapBtn" onclick="setPickingMode()">Pick from map</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6"> 
+            <div class="form-group">
+                <label for="openinghour">Sección electoral</label>
+                <input type="text" class="form-control" name="openinghour" id="openinghour" required>
+            </div>
+        </div>
+        <!-- Estas variables tienen el nombre de openinghour y closinghour pero en realidad lo que capturan son la seccion electoral y el tipo de apellido  -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="closinghour">Tipo de apellido</label>
+                <input type="text" class="form-control" name="closinghour" id="closinghour" required>
+            </div>
+        </div>
+    </div>
+        
+        
+    
+    <div class="form-group">
+        <label for="place_tags">Unas pruebillas</label>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <input class="btn btn-primary" type="button" id="submitNew" value="Save location">
+            <input class="btn btn-default" type="reset" value="Clear form">
+        </div>
+    </div>
+</form>
+
+<script>
+    // Options for our toaster
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-full-width",
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    // Submit NewPlaceForm to addNew.php for database insertion
+    $("#submitNew").click(function() {
+        var Casilla = $("#Casilla").val();
+        var description = $("#description").val();
+        var TipoCasilla = $("#TipoCasilla").val();
+        var TipoCasilla2 = $("#TipoCasilla2").val();
+        var address = $("#address").val();
+        var lat = $("#lat").val();
+        var lng = $("#lng").val();
+        var openinghour = $("#openinghour").val();
+        var closinghour = $("#closinghour").val();
+        if (Casilla == '' || lat == '' || lng == '' || openinghour == '' || TipoCasilla =='' ||closinghour == '') {
+            alert("Please fill all required fields");
+        } else {
+        // Returns successful data submission message when the entered information is stored in database.
+        $.post("views/new/addNew.php", {
+            Casilla: Casilla,
+            description: description,
+            address: address,
+            TipoCasilla: TipoCasilla,
+            TipoCasilla2: TipoCasilla2,
+            lat: lat,
+            lng: lng,
+            openinghour: openinghour,
+            closinghour: closinghour
+        }, function(data) {
+            if (data == "200"){
+                // success
+                toastr.success('Added location ' + Casilla + ' at position ' + lat + " , " + lng + ' with address ' +  address, 'New place saved to database succesfully!');
+            } else {
+                // error
+                toastr.error('Error info: ' + data, 'ERROR while saving place to database :(');
+            }
+            // Reset form fields
+            $('#NewPlaceForm')[0].reset();
+            // Fetch markers and init map to refresh data
+            fetchMarkersFromDB();
+        });
+        }
+    });
+
+    $("#NewPlaceForm").submit(function(e){
+        return false;
+    });
+</script>

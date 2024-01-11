@@ -1,0 +1,39 @@
+/* Custom styles, Generate css using Sass. Not alot here bc time */
+
+a, a:hover{
+    text-decoration: none !important;
+}
+
+#map {
+    min-height: 600px;
+    height: 50%;
+    width: 50%;
+}
+
+textarea{
+    min-height: 65px;
+    max-height: 160px;
+}
+
+#pickFromMapBtn{
+    color: white;
+    text-decoration: none;
+}
+
+.pickingModeActive, .pickingModeActive *{
+    cursor: crosshair !important;
+}
+
+#toast-container{
+    margin-top: 56px;
+}
+
+td{
+    word-wrap: break-word;
+}
+
+.v-center{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -1,0 +1,151 @@
+/* Custom styles, Generate css using Sass. Not alot here bc time */
+a, a:hover {
+  text-decoration: none !important; }
+
+#map {
+  min-height: 600px;
+  height: 100%;
+  width: 100%; }
+
+@media (max-width: 300px) {
+    #map {
+        height: 200px; /* Altura menor para dispositivos móviles */
+    }
+}
+
+
+textarea {
+  min-height: 65px;
+  max-height: 160px; }
+
+#pickFromMapBtn {
+  color: white;
+  text-decoration: none; }
+
+.pickingModeActive, .pickingModeActive * {
+  cursor: crosshair !important; }
+
+#toast-container {
+  margin-top: 56px; }
+
+td {
+  word-wrap: break-word; }
+
+   .text-truncate {
+    max-width: 150px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+} 
+
+
+
+
+#searchResultsTable th, #searchResultsTable td {
+  font-size: 14px; /* Ajusta el tamaño de la fuente */
+  padding: 10px; /* Ajusta el relleno dentro de las celdas */
+  text-align: left; /* Alinea el texto a la izquierda */
+  
+  text-overflow: ellipsis;
+ 
+   
+}
+
+/* Específico para títulos de columnas */
+#searchResultsTable th:nth-child(2), #searchResultsTable td:nth-child(2) {
+  background-color: #f2f2f2; /* Un color de fondo para diferenciar los encabezados */
+  text-align: center; /* Centra los encabezados si prefieres */
+  max-width: 300px;
+
+  
+}
+
+/* Estilos para botones */
+#searchResultsTable .select-location {
+  font-size: 12px; /* Un tamaño de fuente más pequeño para los botones */
+  padding: 5px 10px; /* Menos relleno para los botones */
+  
+}
+
+#searchResultsTable th, #searchResultsTable td {
+  /* Por ejemplo, asignar un ancho del 30% a la primera columna, 20% a la segunda, y 50% a la tercera */
+  width: 30%;
+}
+
+#searchResultsTable th:nth-child(2), #searchResultsTable td:nth-child(2) {
+  width: 20%;
+}
+
+#searchResultsTable th:nth-child(3), #searchResultsTable td:nth-child(3) {
+  width: 40%;
+}
+
+
+/* Estilos generales para la tabla */
+.table-sm {
+  width: 100%; /* Asegúrate de que la tabla use todo el ancho disponible */
+}
+
+/* Estilos para encabezados y celdas */
+.table th, .table td {
+  padding: 0.2rem; /* Ajusta el relleno según sea necesario */
+  vertical-align: middle; /* Alinea el contenido de las celdas verticalmente */
+  border-top: 1px solid #dee2e6; /* Estilo de borde, si es necesario */
+  text-align: left; /* Alineación del texto */
+  
+ 
+}
+
+/* Estilos para tamaños específicos de columna */
+.table .col-xs-6 { width: 50%; }
+.table .col-sm-4 { width: 33.33333%; }
+.table .col-md-3 { width: 50%; }
+.table .col-lg-3 { width: 50%; }
+.table .col-md-5 { width: 41.66667%; }
+.table .col-lg-5 { width: 41.66667%; }
+
+/* Estilos para dispositivos pequeños y cuando la tabla está en modo de colapso */
+@media (max-width: 768px) {
+  .d-none.d-sm-block { display: none; } /* Oculta las columnas solo visibles en pantallas grandes */
+  .table th, .table td {
+    padding: 0.25rem; /* Menos relleno en pantallas pequeñas */
+  }
+  /* Si necesitas que alguna columna ocupe más espacio en pantallas pequeñas, puedes ajustar los anchos aquí */
+}
+
+/* Estilos para botones dentro de la tabla */
+.table .btn-link {
+  padding: 0; /* Reducir el relleno para los botones si es necesario */
+  font-size: 0.875rem; /* Ajustar el tamaño de la fuente para los botones */
+}
+
+/* Estilos para manejar el desbordamiento de texto en la tabla */
+.table .text-truncate {
+  max-width: 150px; /* Establece un ancho máximo para el contenido truncado */
+}
+
+
+.form-group label {
+  display: block;
+  text-align: left;
+  font-size: 1rem; /* Ajusta el tamaño de la fuente a tu preferencia */
+}
+
+.form-control {
+  width: 100%; /* Asegura que el input ocupa toda la columna */
+}
+
+
+
+
+
+
+
+
+
+.v-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
+/*# sourceMappingURL=style.css.map */
